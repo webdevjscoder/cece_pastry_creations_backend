@@ -1,0 +1,12 @@
+      invoke  active_record
+      create    db/migrate/20200831220310_create_line_items.rb
+      create    app/models/line_item.rb
+      invoke    test_unit
+      create      test/models/line_item_test.rb
+      create      test/fixtures/line_items.yml
+      invoke  controller
+      create    app/controllers/line_items_controller.rb
+      invoke    test_unit
+      create      test/controllers/line_items_controller_test.rb
+      invoke  resource_route
+       route    resources :line_items
