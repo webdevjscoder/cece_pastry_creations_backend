@@ -56,6 +56,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+    bcrypt (3.1.15)
+    bcrypt (3.1.15-java)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
     bootsnap (1.4.8-java)
@@ -65,6 +67,8 @@ GEM
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     erubi (1.9.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.13.1)
     ffi (1.13.1-java)
     ffi (1.13.1-x64-mingw32)
@@ -174,8 +178,10 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
+  fast_jsonapi
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
