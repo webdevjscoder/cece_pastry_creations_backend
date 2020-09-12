@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Rails cece_pastry_creations: test" uuid="938ce66d-1780-4513-be35-52433f803a6e">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/cece_pastry_creations_test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails cece_pastry_creations: development" uuid="ac23d465-2f98-4ba4-b3f6-3bc4eb889340">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/cece_pastry_creations_development</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails cece_pastry_creations: production" uuid="de954703-75d9-4f3e-bac9-e87fc309539d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/cece_pastry_creations_production</jdbc-url>
+    </data-source>
+  </component>
+</project>
