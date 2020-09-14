@@ -1,11 +1,8 @@
 class CartsController < ApplicationController
 
   def index
-    carts = Cart.all
-    options = {
-        include: [:customer]
-    }
-    render json: CartSerializer.new(carts, options)
+    @carts = Cart.all
+    render json: @carts
   end
 
   def create
@@ -25,6 +22,12 @@ class CartsController < ApplicationController
           @cart,
           include: [:customer]
     end
+  end
+
+  def list_line_items
+    @cart = Cart.find_by_id(params[:id])
+    @cart_line_items = Cart.line_items(@cart)
+    render json: @cart_line_items
   end
 
   def update
@@ -49,6 +52,6 @@ class CartsController < ApplicationController
   private
 
   def cart_params
-    params.require(:cart).permit(:customer_id)
+    params.require(:cart).permit([:customer_id, line_items_attributes: [:id, :quantity, :total]])
   end
 end
