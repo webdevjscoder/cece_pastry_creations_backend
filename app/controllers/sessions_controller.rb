@@ -1,18 +1,14 @@
 class SessionsController < ApplicationController
 
   def create
-    @customer = Customer.find_by(email: params[:email])
-    byebug
-    if @customer && @customer.authenticate(params[:password])
-      byebug
+    @customer = Customer.find_by(email: params[:customer][:email])
+    if @customer && @customer.authenticate(params[:customer][:password])
       login!
-      byebug
       render json: {
           logged_in: true,
           customer: @customer
       }
     else
-      byebug
       render json: {
           status: 401,
           errors: ['no such user, please try again']
@@ -21,9 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def is_logged_in?
-    byebug
     if logged_in? && current_user
-      byebug
       render json: {
           logged_in: true,
           customer: current_user
@@ -36,7 +30,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
+  def logout
     logout!
     render json: {
         status: 200,
@@ -44,10 +38,10 @@ class SessionsController < ApplicationController
     }
   end
 
-  private
-
-  def session_params
-    params.require(:customer).permit(:email, :password)
-  end
+  # private
+  #
+  # def session_params
+  #   params.require(:customer).permit(:email, :password)
+  # end
 
 end
