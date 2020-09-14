@@ -13,9 +13,7 @@ class CustomersController < ApplicationController
   def show
     @customer = Customer.find_by_id(params[:id])
     if @customer
-      render json: {
-          customers: @customer
-      }
+      render json: @customer
     end
   end
 
