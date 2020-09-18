@@ -4,9 +4,7 @@ class CustomersController < ApplicationController
   def index
     @customers = Customer.all
     if @customers
-      render json: {
-          customers: @customers
-      }
+      render json: @customers, include: [:carts]
     end
   end
 
@@ -18,12 +16,15 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer = Customer.new(customer_params(:first_name, :last_name, :email, :password, :phone_number, :is_admin))
+    @customer = Customer.new(customer_params(:first_name, :last_name, :email, :password, :phone_number, :is_admin,
+                                             cart_attributes: [:id, :customer_id]))
     if @customer.save
+      @cart = Cart.create(customer_id: @customer.id, current_cart: true)
       login!
       render json: {
           status: :created,
-          customer: @customer
+          customer: @customer,
+          cartId: @cart.id
       }
     else
       render json:  {

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       get '/line_items', to: 'carts#list_line_items'
       put '/line_items/:id', to: 'carts#update_line_item'
+      delete '/line_items', to: 'carts#clear_cart'
     end
   end
   resources :line_items
