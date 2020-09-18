@@ -2,7 +2,7 @@ class CartsController < ApplicationController
 
   def index
     @carts = Cart.all
-    render json: @carts
+    render json: @carts, include: [:customer]
   end
 
   def create
@@ -27,6 +27,7 @@ class CartsController < ApplicationController
   def list_line_items
     @cart = Cart.find_by_id(params[:id])
     @cart_line_items = Cart.line_items(@cart)
+    @line_items = @cart.line_items
     render json: @cart_line_items
   end
 
@@ -38,6 +39,17 @@ class CartsController < ApplicationController
       render json: @cart
     end
   end
+
+  def clear_cart
+    @cart = Cart.find_by_id(params[:id])
+    @line_items = @cart.line_items
+      if @line_items
+        LineItem.delete(@line_items)
+        render json: {
+            status: :deleted
+        }
+      end
+    end
 
   def destroy
     @cart = Cart.find_by_id(params[:id])

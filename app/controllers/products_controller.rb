@@ -33,11 +33,18 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find_by_id(params[:id])
-    if @product
+    @cart_id = @product.line_items.find_by(product_id: @product.id).cart_id
+    @line_item = Product.remove_line_item(@product, @cart_id)
+    if @line_item
+      @line_item.destroy
+      render json: {
+          status: :deleted
+      } and return
+    elsif @product
       @product.destroy
       render json: {
           status: :deleted
-      }
+      } and return
     end
   end
 
@@ -46,4 +53,5 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :price, :image, :description, :rating)
   end
+
 end
