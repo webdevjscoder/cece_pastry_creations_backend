@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create]
   delete '/logout', to: 'sessions#logout'
   get '/logged_in', to: 'sessions#is_logged_in?'
+  put 'products/:id/increment', to: 'products#increment'
+  put 'products/:id/decrement', to: 'products#decrement'
   resources :carts do
     member do
       get '/line_items', to: 'carts#list_line_items'
