@@ -31,6 +31,18 @@ class ProductsController < ApplicationController
     end
   end
 
+  def increment
+    @product = Product.find_by_id(params[:id])
+    @product.increment!(:count)
+    render json: @product
+  end
+
+  def decrement
+    @product = Product.find_by_id(params[:id])
+    @product.decrement!(:count)
+    render json: @product
+  end
+
   def destroy
     @product = Product.find_by_id(params[:id])
     @cart_id = @product.line_items.find_by(product_id: @product.id).cart_id
@@ -51,7 +63,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :image, :description, :rating)
+    params.require(:product).permit(:name, :price, :image, :description, :rating, :count)
   end
 
 end
