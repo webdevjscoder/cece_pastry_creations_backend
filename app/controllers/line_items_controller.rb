@@ -10,13 +10,10 @@ class LineItemsController < ApplicationController
     @customer =  Customer.find_by_id(params[:customer_id][:currentUserId])
     @customer.carts.find { |cart| cart.current_cart == true ? @line_item.cart_id = cart.id : nil }
     if @line_item.quantity == nil
-      @line_item.increment!(:quantity, by = 1)
+      @line_item.increment!(:quantity)
     end
     if @line_item.save
-      render json: {
-          status: :created,
-          line_item: @line_item, include: [:product, :cart]
-      }
+      render json: @line_item.product
     end
   end
 

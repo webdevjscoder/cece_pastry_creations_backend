@@ -17,10 +17,9 @@ class CartsController < ApplicationController
 
   def show
     @cart = Cart.find_by_id(params[:id])
+
     if @cart
-      render json:
-          @cart,
-          include: [:customer]
+      render json: {cart: @cart, products: @cart.line_items.map{|li| {name: li.product.name, quantity: li.quantity}}}
     end
   end
 
